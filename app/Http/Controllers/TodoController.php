@@ -15,6 +15,7 @@ class TodoController extends Controller
         $todo = new Todo();
         return view('todo.add', compact('todo'));
     }
+    
     public function store(CreateTodoRequest $request)
     {
         Todo::create($request->all());
@@ -22,10 +23,7 @@ class TodoController extends Controller
         ->back()
         ->with('message', "Succesfully added in todo.");
     }
-    public function show()
-    {
-        
-    }
+    
     public function index(Request $request)
     {
         $todos=Todo::paginate()->sortByDesc("priority");
@@ -37,11 +35,13 @@ class TodoController extends Controller
         $todos = $this->dispatch(new SearchTodo());
         return view('todo.index', compact('todos', 'request'));
     }
+    
     public function edit($id)
     {
         $todo = Todo::find($id);
         return view('todo.add', compact('todo'));
     }
+    
     public function update($id, Request $request)
     {
         $todo = Todo::find($id)->update($request->toArray());
@@ -49,6 +49,7 @@ class TodoController extends Controller
         ->back()
         ->with('message', "Succesfully updated in todo.");  
     }
+    
     public function destroy($id)
     {
         $todo = Todo::find($id)->delete();
@@ -56,4 +57,5 @@ class TodoController extends Controller
         ->back()
         ->with('message', "Succesfully deleted in todo.");
     }
+    
 }

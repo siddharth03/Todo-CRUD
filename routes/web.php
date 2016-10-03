@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 Route::get('todo/search', 'TodoController@search')->name('todo.search');
 Route::resource('/todo', 'TodoController');
-Route::resource('/category', 'categoryController');
+Route::resource('/category', 'CategoryController');
